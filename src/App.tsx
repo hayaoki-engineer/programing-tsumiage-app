@@ -1,33 +1,52 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  // useStateで記録を管理
+  const [kirokus, setKiroku] = useState([
+    {
+      id: "1",
+      category: "TypeScript",
+      contents: "Udemy「TyepeScript入門」",
+      time: "3時間"
+    },
+    {
+      id: "2",
+      category: "React",
+      contents: "Udemy「React入門」",
+      time: "3時間"
+    },
+    {
+      id: "3",
+      category: "Go",
+      contents: "Udemy「Go入門」",
+      time: "3時間"
+    }
+  ])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ul className='kiroku-list'>
+        {kirokus.map((kiroku) => {
+          return (
+            <li key={kiroku.id} className='kiroku-list-item'>
+              <div className='kiroku-left'>
+                <p className='category'>{kiroku.category}</p>
+                <p className='contents'>{kiroku.contents}</p>
+              </div>
+              <p className='time'>{kiroku.time}</p>
+            </li>
+          )
+        })}
+        {/* <li className='kiroku-list-item'>
+          <div className='kiroku-left'>
+            <p className='category'>TypeScript</p>
+            <p className='contents'>Udemy「超TypeScript入門」</p>
+          </div>
+          <p className='time'>3時間</p>
+        </li> */}
+      </ul>
     </>
   )
 }
