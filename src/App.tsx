@@ -1,29 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import { Kirokus } from './Kirokus'
 
 function App() {
 
+  const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3時間")
+  const kiroku2 = new Kirokus("1", "React", "Udemy入門", "3時間")
+  const kiroku3 = new Kirokus("1", "React", "Udemy入門", "3時間")
+  
   // useStateで記録を管理
-  const [kirokus, setKiroku] = useState([
-    {
-      id: "1",
-      category: "TypeScript",
-      contents: "Udemy「TyepeScript入門」",
-      time: "3時間"
-    },
-    {
-      id: "2",
-      category: "React",
-      contents: "Udemy「React入門」",
-      time: "3時間"
-    },
-    {
-      id: "3",
-      category: "Go",
-      contents: "Udemy「Go入門」",
-      time: "3時間"
-    }
-  ])
+  const [kirokus, setKiroku] = useState([kiroku1, kiroku2])
 
   return (
     <>
