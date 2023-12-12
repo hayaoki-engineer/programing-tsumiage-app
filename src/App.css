@@ -24,6 +24,10 @@ p {
   height: 500px;
   padding: 100px 0;
 }
+.kiroku-list .date {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 .kiroku-list-item {
   display: flex;
   justify-content: space-between;

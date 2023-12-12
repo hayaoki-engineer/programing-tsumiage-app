@@ -1,29 +1,36 @@
 import { useState } from 'react'
 import './App.css'
 import { Kirokus } from './Kirokus'
+import { Today } from './Today'
 
 function App() {
 
-  const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3時間")
-  const kiroku2 = new Kirokus("1", "React", "Udemy入門", "3時間")
-  const kiroku3 = new Kirokus("1", "React", "Udemy入門", "3時間")
+  const kiroku = new Kirokus("1", "React", "Udemy入門", "3時間")
+  const today  = new Today("1", "12.12", [kiroku])
   
   // useStateで記録を管理
-  const [kirokus, setKiroku] = useState([kiroku1, kiroku2])
+  const [kirokus, setKiroku] = useState([today])
 
   return (
     <>
       <ul className='kiroku-list'>
         {kirokus.map((kiroku) => {
           return (
-            <li key={kiroku.id} className='kiroku-list-item'>
-              <div className='kiroku-left'>
-                <p className='category'>{kiroku.category}</p>
-                <p className='contents'>{kiroku.contents}</p>
-              </div>
-              <p className='time'>{kiroku.time}</p>
+            <li key={kiroku.id}>
+              <p className='date'>{kiroku.date}</p>
+              {kiroku.memories.map((memory) => {
+                return (
+                  <div key={memory.id} className="kiroku-list-item">
+                    <div className="kiroku-left">
+                      <p className="category">{memory.category}</p>
+                      <p className="contents">{memory.contents}</p>
+                    </div>
+                    <p className="time">{memory.time}</p>  
+                  </div>
+                )
+              })}
             </li>
-          )
+          );
         })}
         {/* <li className='kiroku-list-item'>
           <div className='kiroku-left'>
