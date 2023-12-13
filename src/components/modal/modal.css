@@ -48,7 +48,7 @@ button {
   font-size: 20px;
   font-weight: 700;
   padding-top: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .modal-form {
   padding-bottom: 20px;
@@ -67,12 +67,12 @@ button {
   font-weight: bold;
 }
 .modal-label label:first-child {
-  width: 130px;
+  width: 120px;
 }
 .modal-label label:nth-child(2) {
-  width: 275px;
+  width: 270px;
 }
-.modal-input-field {
+.modal-input-item {
   padding: 15px 40px;
 }
 input {
@@ -81,7 +81,23 @@ input {
   border: 1px solid lightgray;
   margin-right: 20px;
   border-radius: 5px;
+  padding: 0 5px;
+  outline: none;
+  box-sizing: border-box;
 }
 .input-detail {
   width: 250px;
+}
+.modal-button-wrapper {
+  margin: 40px auto 0;
+  text-align: center;
+}
+.register-button {
+  width: 160px;
+  height: 44px;
+  color: #fff;
+  background: #37383e;
+  letter-spacing: 1.25px;
+  font-weight: 700;
+  border-radius: 5px;
 }

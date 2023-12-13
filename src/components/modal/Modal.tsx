@@ -36,10 +36,13 @@ const Modal = () => {
                 <label>内容</label>
                 <label>時間</label>
               </div>
-              <div className='modal-input-field'>
+              <div className='modal-input-item'>
                 <input type="text" />
                 <input className="input-detail" type="text" />
                 <input type="text" />
+              </div>
+              <div className='modal-button-wrapper'>
+                <button className='register-button'>登録する</button>
               </div>
             </div>
           </div>
