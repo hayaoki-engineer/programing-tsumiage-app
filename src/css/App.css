@@ -24,6 +24,9 @@ p {
   height: 500px;
   padding: 100px 0;
 }
+.kiroku-list li {
+  margin-bottom: 40px;
+}
 .kiroku-list .date {
   font-weight: bold;
   margin-bottom: 20px;
@@ -36,6 +39,9 @@ p {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+.kiroku-list-item:last-child {
+  margin-bottom: 0;
 }
 .kiroku-left {
   display: flex;

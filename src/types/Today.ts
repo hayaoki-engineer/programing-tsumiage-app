@@ -5,5 +5,5 @@ export class Today {
     public id: string,
     public date: string,
     public memories: Kirokus[]
-  ){}
+  ) {}
 }
