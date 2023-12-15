@@ -74,6 +74,7 @@ button {
   width: 270px;
 }
 .modal-input-item {
+  display: flex;
   padding: 15px 40px;
 }
 input {
@@ -115,4 +116,15 @@ input {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 40px;
+}
+.modal-select-time {
+  display: flex;
+  align-items: center;
+}
+.modal-select-time input {
+  width: 50px;
+  margin-right: 5px;
+}
+.modal-select-time span {
+  margin-right: 5px;
 }

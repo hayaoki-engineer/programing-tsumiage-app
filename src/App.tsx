@@ -96,10 +96,14 @@ function App() {
                   value={inputDetail}
                   onChange={(e) => setInputDetail(e.target.value)}
                 />
-                <input
+                {/* <input
                   type="text"
                   onChange={(e) => setInputTime(e.target.value)}
-                />
+                /> */}
+                <div className="modal-select-time">
+                  <input type="text" /><span>時間</span>
+                  <input type="text" /><span>何分</span>
+                </div>
               </div>
               <div className="modal-button-wrapper">
                 <button
