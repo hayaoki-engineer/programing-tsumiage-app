@@ -6,10 +6,16 @@ import { Today } from "./types/Today";
 
 
 function App() {
-  const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3時間");
-  const today1 = new Today("1", "12.12", [kiroku1]);
+  /* モーダルに表示する日付をリアルタイムで取得 */
+  const dateGet = new Date();
+  const date: string = dateGet.getFullYear() + "." + (dateGet.getMonth() + 1) + "." + dateGet.getDate();
+  console.log(date);
 
-  /* useStateで記録（カテゴリ、内容、時間）を管理 */
+  /* 記録のモックデータ */
+  const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3時間");
+  const today1 = new Today("1", date, [kiroku1]);
+
+  /* useStateで記録（日付け,カテゴリ、内容、時間）を管理 */
   const [kirokus, setKiroku] = useState([today1]);
 
   /* useStateでinputに入力された値を管理 */
@@ -37,15 +43,22 @@ function App() {
   // 記録を一覧に登録する関数
   const registerKiroku = () => {
     const newKiroku = kirokus.map((kiroku) => {
+      return new Today(kiroku.id, kiroku.date, [
+        ...kiroku.memories,
+        new Kirokus(
+          (Math.random() * 10000).toString(),
+          inputCategory,
+          inputDetail,
+          inputTime
+        ),
+      ]);
+    });
 
-      return new Today(kiroku.id, kiroku.date, [ ...kiroku.memories, new Kirokus((Math.random() * 10000).toString(), inputCategory, inputDetail, inputTime) ]);
-    })
-
-    setKiroku(newKiroku)
-    setIsModalOpen(false)
+    setKiroku(newKiroku);
+    setIsModalOpen(false);
   };
   /* モーダル */
-  
+
   return (
     <>
       <button className="create-button" onClick={() => setIsModalOpen(true)}>
@@ -59,6 +72,13 @@ function App() {
             <button className="close-button" onClick={closeModal}>
               Close Modal
             </button>
+            {kirokus.map((kiroku) => {
+              return (
+                <p className="create-date">
+                    {kiroku.date}
+                </p>
+              )
+            })}
             <div className="modal-form">
               <div className="modal-label">
                 <label>カテゴリ</label>
@@ -82,8 +102,16 @@ function App() {
                 />
               </div>
               <div className="modal-button-wrapper">
-                <button className="button-base cancel-button" onClick={closeModal}>キャンセル</button>
-                <button className="button-base register-button" onClick={registerKiroku}>
+                <button
+                  className="button-base cancel-button"
+                  onClick={closeModal}
+                >
+                  キャンセル
+                </button>
+                <button
+                  className="button-base register-button"
+                  onClick={registerKiroku}
+                >
                   登録する
                 </button>
               </div>
