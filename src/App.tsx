@@ -12,7 +12,7 @@ function App() {
   console.log(date);
 
   /* 記録のモックデータ */
-  const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3時間");
+  const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3", "30");
   const today1 = new Today("1", date, [kiroku1]);
 
   /* useStateで記録（日付け,カテゴリ、内容、時間）を管理 */
@@ -23,7 +23,8 @@ function App() {
   // 内容 //
   const [inputCategory, setInputCategory] = useState("");
   const [inputDetail, setInputDetail] = useState("");
-  // const [inputTime, setInputTime] = useState("");
+  const [inputHours, setInputHours] = useState("");
+  const [inputMinutes, setInputMinutes] = useState("");
 
   /* モーダル */
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,7 +50,8 @@ function App() {
           (Math.random() * 10000).toString(),
           inputCategory,
           inputDetail,
-          inputTime
+          inputHours,
+          inputMinutes
         ),
       ]);
     });
@@ -92,33 +94,22 @@ function App() {
                   value={inputDetail}
                   onChange={(e) => setInputDetail(e.target.value)}
                 />
-                {/* <input
-                  type="text"
-                  onChange={(e) => setInputTime(e.target.value)}
-                /> */}
                 <div className="modal-select-time">
                   <div className="select-time-item">
-                    <select>
-                      <option value="">0</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
-                      <option value="">6</option>
-                      <option value="">7</option>
-                      <option value="">8</option>
-                      <option value="">9</option>
-                      <option value="">10</option>
+                    <select onChange={(e) => setInputHours(e.target.value)}>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
                     </select>
                     <span>時間</span>
                   </div>
                   <div className="select-time-item">
-                    <select>
-                      <option value="">0</option>
-                      <option value="">15</option>
-                      <option value="">30</option>
-                      <option value="">45</option>
+                    <select onChange={(e) => setInputMinutes(e.target.value)}>
+                      <option value="0">0</option>
+                      <option value="15">15</option>
+                      <option value="30">30</option>
+                      <option value="45">45</option>
                     </select>
                     <span>分</span>
                   </div>
@@ -155,7 +146,14 @@ function App() {
                       <p className="category">{memory.category}</p>
                       <p className="contents">{memory.contents}</p>
                     </div>
-                    <p className="time">{memory.time}</p>
+                    <div className="kiroku-right">
+                      <p className="time">
+                        {memory.hours}時間
+                      </p>
+                      <p className="time">
+                        {memory.minutes}分
+                      </p>
+                    </div>
                   </div>
                 );
               })}

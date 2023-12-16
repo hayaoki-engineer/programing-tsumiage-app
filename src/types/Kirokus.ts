@@ -3,6 +3,7 @@ export class Kirokus {
     public id: string,
     public category: string,
     public contents: string,
-    public time: string
+    public hours: string,
+    public minutes: string
   ) {}
 }

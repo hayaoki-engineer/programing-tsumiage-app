@@ -46,6 +46,9 @@ p {
 .kiroku-left {
   display: flex;
 }
+.kiroku-right {
+  display: flex;
+}
 .kiroku-list-item .category{
   width: 100px;
   margin-right: 40px;
