@@ -23,7 +23,7 @@ function App() {
   // 内容 //
   const [inputCategory, setInputCategory] = useState("");
   const [inputDetail, setInputDetail] = useState("");
-  const [inputTime, setInputTime] = useState("");
+  // const [inputTime, setInputTime] = useState("");
 
   /* モーダル */
   const [isModalOpen, setIsModalOpen] = useState(false);
