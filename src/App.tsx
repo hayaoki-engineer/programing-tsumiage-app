@@ -62,7 +62,7 @@ function App() {
   return (
     <>
       <button className="create-button" onClick={() => setIsModalOpen(true)}>
-        積み上げを記録する
+        積み上げを記録
       </button>
       {isModalOpen && (
         <>
@@ -73,11 +73,7 @@ function App() {
               Close Modal
             </button>
             {kirokus.map((kiroku) => {
-              return (
-                <p className="create-date">
-                    {kiroku.date}
-                </p>
-              )
+              return <p className="create-date">{kiroku.date}</p>;
             })}
             <div className="modal-form">
               <div className="modal-label">
@@ -101,8 +97,31 @@ function App() {
                   onChange={(e) => setInputTime(e.target.value)}
                 /> */}
                 <div className="modal-select-time">
-                  <input type="text" /><span>時間</span>
-                  <input type="text" /><span>何分</span>
+                  <div className="select-time-item">
+                    <select>
+                      <option value="">0</option>
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                      <option value="">4</option>
+                      <option value="">5</option>
+                      <option value="">6</option>
+                      <option value="">7</option>
+                      <option value="">8</option>
+                      <option value="">9</option>
+                      <option value="">10</option>
+                    </select>
+                    <span>時間</span>
+                  </div>
+                  <div className="select-time-item">
+                    <select>
+                      <option value="">0</option>
+                      <option value="">15</option>
+                      <option value="">30</option>
+                      <option value="">45</option>
+                    </select>
+                    <span>分</span>
+                  </div>
                 </div>
               </div>
               <div className="modal-button-wrapper">

@@ -125,6 +125,15 @@ input {
   width: 50px;
   margin-right: 5px;
 }
-.modal-select-time span {
+.select-time-item {
   margin-right: 5px;
+}
+.select-time-item select {
+  height: 38px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0 5px;
+    outline: none;
+    box-sizing: border-box;
+    margin-right: 5px;
 }
