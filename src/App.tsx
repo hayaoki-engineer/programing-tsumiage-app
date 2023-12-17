@@ -3,6 +3,8 @@ import "./css/App.css";
 import "./css/modal.css"
 import { Kirokus } from "./types/Kirokus";
 import { Today } from "./types/Today";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "./firebase";
 
 
 function App() {
@@ -60,6 +62,18 @@ function App() {
     setIsModalOpen(false);
   };
   /* モーダル */
+
+  const [hoursResults, setHoursResults] = useState()
+  const q = query(collection(db, "constants"));
+
+  useEffect(() => {
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.docs.forEach((doc) =>
+      console.log(doc.id, doc.data())
+      );
+      
+    })
+  }, [])
 
   return (
     <>
