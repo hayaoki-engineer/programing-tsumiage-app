@@ -65,14 +65,15 @@ function App() {
 
   const [hoursResults, setHoursResults] = useState()
 
-  const querySnapshot = await getDocs(collection(db, "constans"));
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
-  });
-
   useEffect(() => {
-   
+    const getTimes = async () => {
+      const querySnapshot = await getDocs(collection(db, "constans"));
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    }
+    getTimes();
   }, [])
 
   return (
