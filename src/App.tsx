@@ -3,7 +3,7 @@ import "./css/App.css";
 import "./css/modal.css"
 import { Kirokus } from "./types/Kirokus";
 import { Today } from "./types/Today";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
 import { db } from "./firebase";
 
 
@@ -64,15 +64,15 @@ function App() {
   /* モーダル */
 
   const [hoursResults, setHoursResults] = useState()
-  const q = query(collection(db, "constants"));
+
+  const querySnapshot = await getDocs(collection(db, "constans"));
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+  });
 
   useEffect(() => {
-    onSnapshot(q, (querySnapshot) => {
-      querySnapshot.docs.forEach((doc) =>
-      console.log(doc.id, doc.data())
-      );
-      
-    })
+   
   }, [])
 
   return (
