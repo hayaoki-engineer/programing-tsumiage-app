@@ -3,7 +3,7 @@ import "./css/App.css";
 import "./css/modal.css"
 import { Kirokus } from "./types/Kirokus";
 import { Today } from "./types/Today";
-import { QuerySnapshot, collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import { DocumentData, QuerySnapshot, collection, getDocs, onSnapshot, query } from "firebase/firestore";
 import { db } from "./firebase";
 
 
@@ -11,7 +11,7 @@ function App() {
   /* モーダルに表示する日付をリアルタイムで取得 */
   const dateGet = new Date();
   const date: string = dateGet.getFullYear() + "." + (dateGet.getMonth() + 1) + "." + dateGet.getDate();
-  console.log(date);
+
 
   /* 記録のモックデータ */
   const kiroku1 = new Kirokus("1", "React", "Udemy入門", "3", "30");
@@ -63,16 +63,29 @@ function App() {
   };
   /* モーダル */
 
-  const [hoursResults, setHoursResults] = useState([])
+  /* Firebaseデータ取得 */
+  const [hoursResults, setHoursResults] = useState("")
 
   const postData = collection(db, "constants");
-  getDocs(postData).then((querySnapshot) => {
-    console.log(querySnapshot.docs.map((doc) => doc.data()));
-  })
 
   useEffect(() => {
+
+    getDocs(postData).then((querySnapshot) => {
+      const timesDatas = querySnapshot.docs.map((doc) => doc.data());
+      // 時間(hours)取得
+      const hoursData: DocumentData | undefined = timesDatas.find(
+        (timesData) => {
+          return timesData.hours;
+        }
+      );
+      setHoursResults(hoursData.hours);
+    });
     
   }, [])
+
+  console.log(hoursResults);
+
+  /* Firebaseデータ取得 */
 
   return (
     <>
