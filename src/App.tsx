@@ -122,11 +122,12 @@ function App() {
                 />
                 <div className="modal-select-time">
                   <div className="select-time-item">
-                    <select onChange={(e) => setInputHours(e.target.value)}>
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                  <select onChange={(e) => setInputHours(e.target.value)}>
+                    {hoursResults.map((hoursResult) => {
+                      return (
+                        <option value={hoursResult}>{hoursResult}</option>
+                      );
+                    })}
                     </select>
                     <span>時間</span>
                   </div>
