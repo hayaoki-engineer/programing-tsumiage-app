@@ -64,7 +64,8 @@ function App() {
   /* モーダル */
 
   /* Firebaseデータ取得 */
-  const [hoursResults, setHoursResults] = useState("")
+  const [hoursResults, setHoursResults] = useState<string[]>([]);
+  const [minutesResults, setMinutesResults] = useState<string[]>([]);
 
   const postData = collection(db, "constants");
 
@@ -78,12 +79,17 @@ function App() {
           return timesData.hours;
         }
       );
-      setHoursResults(hoursData.hours);
+      // 分(minutes)取得
+      const minutesData: DocumentData | undefined = timesDatas.find(
+        (timesData) => {
+          return timesData.minutes;
+        }
+      );
+      setHoursResults(hoursData?.hours);
+      setMinutesResults(minutesData?.minutes)
     });
     
   }, [])
-
-  console.log(hoursResults);
 
   /* Firebaseデータ取得 */
 
@@ -122,21 +128,22 @@ function App() {
                 />
                 <div className="modal-select-time">
                   <div className="select-time-item">
-                  <select onChange={(e) => setInputHours(e.target.value)}>
-                    {hoursResults.map((hoursResult) => {
-                      return (
-                        <option value={hoursResult}>{hoursResult}</option>
-                      );
-                    })}
+                    <select onChange={(e) => setInputHours(e.target.value)}>
+                      {hoursResults.map((hoursResult) => {
+                        return (
+                          <option value={hoursResult}>{hoursResult}</option>
+                        );
+                      })}
                     </select>
                     <span>時間</span>
                   </div>
                   <div className="select-time-item">
                     <select onChange={(e) => setInputMinutes(e.target.value)}>
-                      <option value="0">0</option>
-                      <option value="15">15</option>
-                      <option value="30">30</option>
-                      <option value="45">45</option>
+                      {minutesResults.map((minutesResult) => {
+                        return (
+                          <option value={minutesResult}>{minutesResult}</option>
+                        );
+                      })}
                     </select>
                     <span>分</span>
                   </div>
@@ -174,12 +181,8 @@ function App() {
                       <p className="contents">{memory.contents}</p>
                     </div>
                     <div className="kiroku-right">
-                      <p className="time">
-                        {memory.hours}時間
-                      </p>
-                      <p className="time">
-                        {memory.minutes}分
-                      </p>
+                      <p className="time">{memory.hours}時間</p>
+                      <p className="time">{memory.minutes}分</p>
                     </div>
                   </div>
                 );
